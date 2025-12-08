@@ -1,34 +1,33 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Google Calendar Integration for Todoist",
-  "version": "1.0.0.0",
-  "author": "Spencer Hachmeister",	
-  "description": "Adds a todoist bar to the Google Calendar page.",
+  "version": "2.0.0",
+  "author": "Spencer Hachmeister",
+  "description": "Adds a resizable Todoist sidebar to the Google Calendar page.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://calendar.google.com/*"],
   "options_page": "options.html",
-  "web_accessible_resources": [
-    "jQuery/*",	  
-    "loader.js",
-    "cssLoader.js",
-    "main.css"
-  ], 
-  "permissions": [
-    "https://calendar.google.com/*"
-  ],
- "content_scripts": [
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://calendar.google.com/*"],
+      "run_at": "document_start",
+      "js": ["cssLoader.js"]
+    },
     {
       "matches": ["https://calendar.google.com/*"],
       "run_at": "document_idle",
       "js": ["jQuery/jquery.js", "jQuery/jquery-ui.js", "loader.js"],
       "css": ["jQuery/jquery-ui.structure.css", "jQuery/jquery-ui.theme.css"]
-    },
-    {
-      "matches": ["https://calendar.google.com/*"],
-      "run_at": "document_start",
-      "js": ["cssLoader.js"]
     }
   ],
-  "background": {
-	"scripts": ["listener.js"],
-	"persistent": false
-  }
+  "web_accessible_resources": [
+    {
+      "resources": ["jQuery/*", "main.css"],
+      "matches": ["https://calendar.google.com/*"]
+    }
+  ]
 }
