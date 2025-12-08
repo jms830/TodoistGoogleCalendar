@@ -1,0 +1,36 @@
+{
+  "name": "todoist-google-calendar-extension",
+  "version": "2.0.0",
+  "description": "A Chrome extension that adds a resizable Todoist sidebar to Google Calendar",
+  "author": "Spencer Hachmeister",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run lint && npm run typecheck && npm run bundle",
+    "bundle": "esbuild src/loader.ts src/background.ts src/options.ts src/cssLoader.ts --bundle --outdir=dist --format=iife --target=chrome100",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.ts\"",
+    "lint:fix": "eslint \"src/**/*.ts\" --fix",
+    "format": "prettier --write \"src/**/*.{ts,js,json,css,html}\"",
+    "clean": "rm -rf dist",
+    "dev": "npm run bundle -- --watch",
+    "package": "npm run build && npm run copy-assets && cd dist && zip -r ../extension.zip .",
+    "copy-assets": "cp manifest.json dist/ && cp main.css dist/ && cp options.html dist/ && cp -r jQuery dist/"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.260",
+    "@types/jquery": "^3.5.29",
+    "@types/jqueryui": "^1.12.22",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "esbuild": "^0.19.11",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
