@@ -1,8 +1,8 @@
 {
-  "name": "todoist-google-calendar-extension",
-  "version": "2.0.0",
-  "description": "A Chrome extension that adds a resizable Todoist sidebar to Google Calendar",
-  "author": "Spencer Hachmeister",
+  "name": "todoist-google-calendar-sidebar",
+  "version": "1.0.0",
+  "description": "Adds a resizable Todoist sidebar to Google Calendar for seamless task management",
+  "author": "Jordan Strauss",
   "license": "MIT",
   "private": true,
   "type": "module",

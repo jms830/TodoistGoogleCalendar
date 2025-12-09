@@ -29,7 +29,7 @@ function setup(options: ExtensionOptions = DEFAULT_OPTIONS): void {
   // Create Todoist iframe
   const iFrame = document.createElement('iframe');
   iFrame.id = 'todoExtraIFrame';
-  iFrame.src = 'https://todoist.com';
+  iFrame.src = 'https://app.todoist.com';
 
   if (calendarLeft === 'true') {
     // Calendar on left, Todoist on right
